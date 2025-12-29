@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #0f172a; /* Biru gelap premium */
+    --bg-color: #0f172a; /* Biru gelap */
     --card-bg: #1e293b;
-    --accent-gold: #fbbf24; /* Warna emas elegan */
+    --accent-gold: #fbbf24; /* Warna emas */
     --accent-silver: #94a3b8;
     --success-green: #10b981;
     --text-main: #f8fafc;
@@ -34,10 +34,10 @@ body {
     border-radius: 16px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
     width: 100%;
-    border: 1px solid rgba(251, 191, 36, 0.1); /* Border emas nipis */
+    border: 1px solid rgba(251, 191, 36, 0.1); /* Border */
 }
 
-/* TAJUK UTAMA - Emas */
+/* TAJUK UTAMA */
 h1 {
     color: var(--accent-gold);
     font-size: 2.2rem;
@@ -56,7 +56,6 @@ h1 {
 }
 
 /* BUTTON STYLE */
-/* Ditambah .custom-file-upload untuk selaraskan dengan HTML */
 button, .custom-file-label, .custom-file-upload {
     background-color: var(--accent-gold);
     color: #000;
@@ -66,7 +65,7 @@ button, .custom-file-label, .custom-file-upload {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
-    display: inline-block; /* Penting untuk label muncul sebagai butang */
+    display: inline-block; 
     text-decoration: none;
     font-size: 0.95rem;
 }
@@ -76,7 +75,6 @@ button:hover, .custom-file-label:hover, .custom-file-upload:hover {
     transform: translateY(-1px);
 }
 
-/* Input asal disembunyikan supaya butang custom kita sahaja nampak */
 input[type="file"] { 
     display: none; 
 }
@@ -154,7 +152,7 @@ input[type="file"] {
 }
 
 .footer .names {
-    color: var(--accent-gold); /* Nama ditukar ke emas untuk nampak highlight */
+    color: var(--accent-gold); 
     font-weight: 600;
 }
 
