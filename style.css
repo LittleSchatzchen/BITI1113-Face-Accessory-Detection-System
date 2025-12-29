@@ -37,7 +37,7 @@ body {
     border: 1px solid rgba(251, 191, 36, 0.1); /* Border emas nipis */
 }
 
-/* TAJUK UTAMA - Tukar ke Emas */
+/* TAJUK UTAMA - Emas */
 h1 {
     color: var(--accent-gold);
     font-size: 2.2rem;
@@ -52,10 +52,12 @@ h1 {
     justify-content: center;
     gap: 15px;
     margin-bottom: 30px;
+    align-items: center;
 }
 
 /* BUTTON STYLE */
-button, .custom-file-label {
+/* Ditambah .custom-file-upload untuk selaraskan dengan HTML */
+button, .custom-file-label, .custom-file-upload {
     background-color: var(--accent-gold);
     color: #000;
     border: none;
@@ -64,32 +66,27 @@ button, .custom-file-label {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    display: inline-block; /* Penting untuk label muncul sebagai butang */
+    text-decoration: none;
+    font-size: 0.95rem;
 }
 
-button:hover, .custom-file-label:hover {
+button:hover, .custom-file-label:hover, .custom-file-upload:hover {
     background-color: #f59e0b;
     transform: translateY(-1px);
 }
 
-.secondary-btn {
-    background-color: transparent;
-    border: 2px solid var(--accent-silver);
-    color: var(--accent-silver);
+/* Input asal disembunyikan supaya butang custom kita sahaja nampak */
+input[type="file"] { 
+    display: none; 
 }
-
-.secondary-btn:hover {
-    border-color: var(--text-main);
-    color: var(--text-main);
-    background: transparent;
-}
-
-input[type="file"] { display: none; }
 
 /* MAIN LAYOUT */
 .main-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    width: 100%;
 }
 
 .card-glow {
@@ -97,6 +94,7 @@ input[type="file"] { display: none; }
     border-radius: 12px;
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
 }
 
 .card-header {
@@ -105,6 +103,7 @@ input[type="file"] { display: none; }
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-align: left;
 }
 
 #webcam-container, canvas {
@@ -112,6 +111,7 @@ input[type="file"] { display: none; }
     height: auto !important;
     border-radius: 8px;
     background: #000;
+    margin: 0 auto;
 }
 
 /* PROGRESS BAR */
@@ -138,7 +138,7 @@ input[type="file"] { display: none; }
     transition: width 0.4s ease;
 }
 
-/* FOOTER - Tengah & Warna Putih/Perak */
+/* FOOTER */
 .footer {
     margin-top: auto;
     padding: 30px 0;
@@ -154,7 +154,7 @@ input[type="file"] { display: none; }
 }
 
 .footer .names {
-    color: var(--text-main); /* warna putih lembut */
+    color: var(--accent-gold); /* Nama ditukar ke emas untuk nampak highlight */
     font-weight: 600;
 }
 
