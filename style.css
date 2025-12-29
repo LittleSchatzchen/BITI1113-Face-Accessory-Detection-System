@@ -1,172 +1,161 @@
 :root {
-    --bg-color: #0a0b1e;
-    --card-bg: rgba(16, 18, 45, 0.9);
-    --neon-pink: #ff2d55;
-    --neon-blue: #00f2ff;
-    --neon-green: #39ff14;
-    --text-color: #ffffff;
+    --bg-color: #0f172a; /* Biru gelap premium */
+    --card-bg: #1e293b;
+    --accent-gold: #fbbf24; /* Warna emas elegan */
+    --accent-silver: #94a3b8;
+    --success-green: #10b981;
+    --text-main: #f8fafc;
 }
 
 body {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--text-main);
     margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-/* Animasi Background Berbintik */
-.bg-animation {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 50%, #1b2735 0%, #090a0f 100%);
-    z-index: -1;
-}
-
-.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
     min-height: 100vh;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1000px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
 }
 
 .container {
     background: var(--card-bg);
     padding: 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 242, 255, 0.3);
-    box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
-    max-width: 1000px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
     width: 100%;
+    border: 1px solid rgba(251, 191, 36, 0.1); /* Border emas nipis */
+}
+
+/* TAJUK UTAMA - Tukar ke Emas */
+h1 {
+    color: var(--accent-gold);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: -0.025em;
     text-align: center;
 }
 
-.neon-text {
-    color: var(--neon-pink);
-    text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-}
-
 .input-options {
-    margin-bottom: 30px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
-.neon-btn {
-    background: transparent;
-    border: 2px solid var(--neon-blue);
-    color: var(--neon-blue);
-    padding: 12px 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-    text-transform: uppercase;
-    box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
-}
-
-.neon-btn:hover {
-    background: var(--neon-blue);
+/* BUTTON STYLE */
+button, .custom-file-label {
+    background-color: var(--accent-gold);
     color: #000;
-    box-shadow: 0 0 20px var(--neon-blue);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.neon-btn.secondary {
-    border-color: var(--neon-pink);
-    color: var(--neon-pink);
+button:hover, .custom-file-label:hover {
+    background-color: #f59e0b;
+    transform: translateY(-1px);
 }
 
-.neon-btn.secondary:hover {
-    background: var(--neon-pink);
-    color: #fff;
+.secondary-btn {
+    background-color: transparent;
+    border: 2px solid var(--accent-silver);
+    color: var(--accent-silver);
+}
+
+.secondary-btn:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+    background: transparent;
 }
 
 input[type="file"] { display: none; }
 
+/* MAIN LAYOUT */
 .main-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    margin-top: 20px;
 }
 
 .card-glow {
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
+    background: #0f172a;
+    border-radius: 12px;
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.card-glow::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 4px;
-    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .card-header {
-    font-size: 0.9rem;
-    color: #aaa;
+    font-size: 0.85rem;
+    color: var(--accent-silver);
     margin-bottom: 15px;
-    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 #webcam-container, canvas {
     width: 100% !important;
     height: auto !important;
-    border-radius: 10px;
-    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    background: #000;
 }
 
-/* Progress Bar Style */
-.prediction-item {
-    margin-bottom: 25px;
-    text-align: left;
-}
+/* PROGRESS BAR */
+.prediction-item { margin-bottom: 20px; }
 
 .class-label {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-weight: 500;
 }
 
 .progress-bar-container {
-    background: #1a1a2e;
-    height: 12px;
-    border-radius: 10px;
+    background: #334155;
+    height: 10px;
+    border-radius: 999px;
     overflow: hidden;
 }
 
 .progress-bar {
     height: 100%;
     width: 0%;
-    transition: 0.5s ease;
-    box-shadow: 0 0 10px currentColor;
+    background-color: var(--accent-gold);
+    transition: width 0.4s ease;
 }
 
-/* Footer Style */
+/* FOOTER - Tengah & Warna Putih/Perak */
 .footer {
     margin-top: auto;
-    padding: 40px 0 20px;
-    width: 100%;
+    padding: 30px 0;
     text-align: center;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer p {
-    color: #666;
-    font-size: 0.85rem;
+    color: var(--accent-silver);
+    font-size: 0.9rem;
+    margin: 0;
 }
 
-.highlight {
-    color: var(--neon-pink);
-    font-weight: bold;
+.footer .names {
+    color: var(--text-main); /* warna putih lembut */
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
