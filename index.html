@@ -3,33 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BITI1113 AI Detection</title>
+    <title>BITI1113 AI Mask Detection</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>AI Image Classification</h1>
+    <div class="bg-animation"></div>
 
-        <div class="input-options">
-            <button id="startCameraBtn" onclick="initWebcam()">Start Camera</button>
-            <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
-            <label for="imageUpload" class="custom-file-upload">Choose File</label>
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="neon-text">AI Image Classification</h1>
+
+            <div class="input-options">
+                <button id="startCameraBtn" class="neon-btn" onclick="initWebcam()">Start Camera</button>
+                <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+                <label for="imageUpload" class="neon-btn secondary">Choose File</label>
+            </div>
+
+            <div class="main-content">
+                <div class="webcam-section card-glow">
+                    <div class="card-header">Input Image</div>
+                    <div id="webcam-container"></div>
+                    <canvas id="uploadedImageCanvas" style="display: none;"></canvas>
+                </div>
+                
+                <div class="results-section card-glow">
+                    <div class="card-header">Detection Results</div>
+                    <div id="label-container"></div>
+                </div>
+            </div>
         </div>
 
-        <div class="main-content">
-            <div class="webcam-section">
-                <div id="webcam-container"></div>
-                <canvas id="uploadedImageCanvas" style="display: none;"></canvas>
-            </div>
-            <div class="results-section">
-                <div id="label-container"></div>
-            </div>
-        </div>
+        <footer class="footer">
+            <p>Developed by <span class="highlight">Arfah, Camelia, Haziqah, Syamimi</span> | BITI1113 AI Project &copy; 2025</p>
+        </footer>
     </div>
-
-    <footer class="footer">
-    <p>Developed by <strong>Arfah, Camelia, Haziqah, Syamimi</strong> | BITI1113 AI Project &copy; 2025</p>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
