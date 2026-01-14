@@ -3,46 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Face Accessory Detection</title>
+    <title>AI Face Accessory Detection System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="wrapper">
-    <div class="container">
-        <h1>AI Face Accessory Detection System</h1>
-
-        <div class="input-options">
-            <button onclick="initWebcam()">Start Camera</button>
-            <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
-            <label for="imageUpload" class="custom-file-upload">Choose File</label>
-        </div>
-
-        <div class="main-content">
-            <div class="card-glow">
-                <div class="card-header">Input Image</div>
-                <div id="webcam-container"></div>
-                <canvas id="uploadedImageCanvas"></canvas>
+    <div class="wrapper">
+        <div class="container">
+            <h1>Real-Time AI Face Accessory Detection System</h1>
+            <div class="input-options">
+                <button onclick="initWebcam()">Start Camera</button>
+                <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+                <label for="imageUpload" class="custom-file-upload">Choose File</label>
             </div>
-
-            <div class="card-glow">
-                <div class="card-header">Detection Results</div>
-                <div id="final-status-container">
-                    <span id="final-status">System Ready</span>
+            <div class="main-content">
+                <div class="card-glow">
+                    <div class="card-header">Input Image</div>
+                    <div id="webcam-container"></div>
+                    <canvas id="uploadedImageCanvas"></canvas>
                 </div>
-                <div id="label-container"></div>
+                <div class="card-glow">
+                    <div class="card-header">Detection Results</div>
+                    <div id="final-status-container">
+                        <span id="final-status">System Ready</span>
+                    </div>
+                    <div id="label-container"></div>
+                </div>
             </div>
         </div>
+        <footer class="footer">
+            <p>Developed by <span class="names">Arfah, Camelia, Haziqah, Syamimi</span> | BITI1113 AI Project © 2025</p>
+        </footer>
     </div>
-
-    <footer class="footer">
-        <p>Developed by <span class="names">Arfah, Camelia, Haziqah, Syamimi</span> | BITI1113 AI Project © 2025</p>
-    </footer>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-<script src="script.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
