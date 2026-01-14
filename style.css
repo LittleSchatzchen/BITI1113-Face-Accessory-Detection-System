@@ -29,43 +29,34 @@ body {
 h1 {
     text-align: center;
     color: var(--accent-gold);
-    margin-bottom: 30px;
 }
 
 .input-options {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 30px;
+    margin: 30px 0;
     align-items: center;
 }
 
-/* SEMBUNYIKAN INPUT ASAL */
-input[type="file"] {
+#imageUpload {
     display: none !important;
 }
 
-/* PENYELARASAN BUTANG */
-button,
-.custom-file-upload {
-    background: var(--accent-gold);
+button, .custom-file-upload {
+    background: var(--accent-gold) !important;
+    color: black !important;
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    color: black !important; /* Paksa tulisan jadi hitam */
     display: inline-block;
-    font-family: inherit;
-    font-size: 14px;
-    text-decoration: none;
     transition: 0.3s;
 }
 
-button:hover,
-.custom-file-upload:hover {
-    background: white; /* Bertukar putih sikit bila hover */
-    color: black;
+button:hover, .custom-file-upload:hover {
+    background: white !important;
 }
 
 .main-content {
@@ -89,53 +80,33 @@ button:hover,
     font-weight: bold;
 }
 
-#webcam-container,
-canvas {
-    width: 100%;
+/* FIX: IMEJ TIDAK BERTINDIH */
+#webcam-container, #uploadedImageCanvas {
+    width: 100% !important;
     border-radius: 8px;
     background: black;
-    aspect-ratio: 1/1; /* Kekalkan bentuk kotak */
+    display: block;
 }
 
-/* RESULT BAR */
-.prediction-item {
-    margin-bottom: 18px;
-}
+#uploadedImageCanvas { display: none; }
 
-.class-label {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
-}
-
-.progress-bar-container {
-    background: #334155;
-    height: 10px;
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background: var(--accent-gold);
-    transition: width 0.4s ease;
-}
-
-.footer {
+#final-status-container {
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px dashed var(--accent-gold);
+    padding: 15px;
+    border-radius: 8px;
     text-align: center;
-    margin-top: 30px;
-    font-size: 0.9rem;
-    color: var(--accent-silver);
+    margin-bottom: 20px;
 }
 
-.names {
-    color: var(--accent-gold);
-    font-weight: 600;
-}
+#final-status { font-weight: bold; color: var(--accent-gold); font-size: 1.1rem; }
 
-@media (max-width: 768px) {
-    .main-content {
-        grid-template-columns: 1fr;
-    }
-}
+.prediction-item { margin-bottom: 15px; }
+.class-label { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.progress-bar-container { background: #334155; height: 10px; border-radius: 5px; overflow: hidden; }
+.progress-bar { height: 100%; background: var(--accent-gold); width: 0%; transition: 0.4s; }
+
+.footer { text-align: center; margin-top: 30px; color: var(--accent-silver); }
+.names { color: var(--accent-gold); font-weight: 600; }
+
+@media (max-width: 768px) { .main-content { grid-template-columns: 1fr; } }
