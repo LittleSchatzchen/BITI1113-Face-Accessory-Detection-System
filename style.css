@@ -50,7 +50,7 @@ button,
 
 button:hover,
 .custom-file-upload:hover {
-    background: #f59e0b;
+    background: black;
 }
 
 input[type="file"] {
