@@ -3,40 +3,31 @@
     --card-bg: #1e293b;
     --accent-gold: #fbbf24;
     --accent-silver: #94a3b8;
-    --success-green: #10b981;
     --text-main: #f8fafc;
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
-    margin: 0;
-    min-height: 100vh;
 }
 
 .wrapper {
-    width: 100%;
     max-width: 1000px;
-    padding: 40px 20px;
     margin: auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    padding: 40px 20px;
 }
 
 .container {
     background: var(--card-bg);
     padding: 40px;
     border-radius: 16px;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
-    border: 1px solid rgba(251,191,36,0.1);
 }
 
 h1 {
-    color: var(--accent-gold);
     text-align: center;
-    font-size: 2.2rem;
+    color: var(--accent-gold);
     margin-bottom: 30px;
 }
 
@@ -47,20 +38,19 @@ h1 {
     margin-bottom: 30px;
 }
 
-button, .custom-file-upload {
+button,
+.custom-file-upload {
     background: var(--accent-gold);
-    color: #000;
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-button:hover, .custom-file-upload:hover {
+button:hover,
+.custom-file-upload:hover {
     background: #f59e0b;
-    transform: translateY(-1px);
 }
 
 input[type="file"] {
@@ -77,7 +67,6 @@ input[type="file"] {
     background: #0f172a;
     padding: 20px;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .card-header {
@@ -87,12 +76,14 @@ input[type="file"] {
     text-transform: uppercase;
 }
 
-#webcam-container, canvas {
-    width: 100% !important;
-    background: #000;
+#webcam-container,
+canvas {
+    width: 100%;
     border-radius: 8px;
+    background: black;
 }
 
+/* RESULT BAR */
 .prediction-item {
     margin-bottom: 18px;
 }
@@ -113,21 +104,16 @@ input[type="file"] {
 .progress-bar {
     height: 100%;
     width: 0%;
+    background: var(--accent-gold);
     transition: width 0.4s ease;
 }
 
 .footer {
-    margin-top: auto;
-    padding: 30px 0;
     text-align: center;
+    margin-top: 30px;
 }
 
-.footer p {
-    color: var(--accent-silver);
-    font-size: 0.9rem;
-}
-
-.footer .names {
+.names {
     color: var(--accent-gold);
     font-weight: 600;
 }
