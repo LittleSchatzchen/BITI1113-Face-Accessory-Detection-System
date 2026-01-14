@@ -51,7 +51,8 @@ async function handleImageUpload(event) {
             const canvas = document.getElementById("uploadedImageCanvas");
             canvas.style.display = "block";
             const ctx = canvas.getContext("2d");
-            canvas.width = 400; canvas.height = 400;
+            canvas.width = 400; 
+            canvas.height = 400;
             ctx.drawImage(img, 0, 0, 400, 400);
             currentMode = "image";
             await predict(canvas);
@@ -71,9 +72,9 @@ async function predict(input) {
         item.querySelector(".pct-text").innerText = percent;
         item.querySelector(".progress-bar").style.width = percent;
 
-        if (p.className.includes("mask")) maskProb = p.probability;
-        if (p.className.includes("glasses") || p.className.includes("spec")) glassesProb = p.probability;
-        if (p.className.includes("hat")) hatProb = p.probability;
+        if (p.className.toLowerCase().includes("mask")) maskProb = p.probability;
+        if (p.className.toLowerCase().includes("glasses") || p.className.toLowerCase().includes("spec")) glassesProb = p.probability;
+        if (p.className.toLowerCase().includes("hat")) hatProb = p.probability;
     });
 
     const threshold = 0.35;
