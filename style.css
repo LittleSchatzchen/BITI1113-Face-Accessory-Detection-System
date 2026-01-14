@@ -23,6 +23,7 @@ body {
     background: var(--card-bg);
     padding: 40px;
     border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 h1 {
@@ -36,8 +37,15 @@ h1 {
     justify-content: center;
     gap: 15px;
     margin-bottom: 30px;
+    align-items: center;
 }
 
+/* SEMBUNYIKAN INPUT ASAL */
+input[type="file"] {
+    display: none !important;
+}
+
+/* PENYELARASAN BUTANG */
 button,
 .custom-file-upload {
     background: var(--accent-gold);
@@ -46,17 +54,18 @@ button,
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    color: black;
+    color: black !important; /* Paksa tulisan jadi hitam */
     display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
 button:hover,
 .custom-file-upload:hover {
-    background: black;
-    color: var(--accent-gold); 
-}
-
-input[type="file"] {
-    display: none;
+    background: white; /* Bertukar putih sikit bila hover */
+    color: black;
 }
 
 .main-content {
@@ -69,6 +78,7 @@ input[type="file"] {
     background: #0f172a;
     padding: 20px;
     border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .card-header {
@@ -76,6 +86,7 @@ input[type="file"] {
     color: var(--accent-silver);
     margin-bottom: 15px;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 #webcam-container,
@@ -83,6 +94,7 @@ canvas {
     width: 100%;
     border-radius: 8px;
     background: black;
+    aspect-ratio: 1/1; /* Kekalkan bentuk kotak */
 }
 
 /* RESULT BAR */
@@ -113,6 +125,8 @@ canvas {
 .footer {
     text-align: center;
     margin-top: 30px;
+    font-size: 0.9rem;
+    color: var(--accent-silver);
 }
 
 .names {
