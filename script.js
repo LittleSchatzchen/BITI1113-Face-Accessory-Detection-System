@@ -1,80 +1,107 @@
-// ================================
-// Face Accessory Detection System
-// Local Teachable Machine Model
-// ================================
+const URL = "./model/";
 
-let model;
-let webcam;
+let model, webcam, labelContainer, maxPredictions;
+let currentMode = "webcam";
 
-// Load model dari folder "model"
-async function init() {
-    const modelURL = "model/model.json";
-    const metadataURL = "model/metadata.json";
+// Load model
+async function loadModel() {
+    model = await tmImage.load(
+        URL + "model.json",
+        URL + "metadata.json"
+    );
 
-    model = await tmImage.load(modelURL, metadataURL);
-    console.log("Model loaded successfully");
+    maxPredictions = model.getTotalClasses();
+    labelContainer = document.getElementById("label-container");
+    labelContainer.innerHTML = "";
+
+    for (let i = 0; i < maxPredictions; i++) {
+        const item = document.createElement("div");
+        item.className = "prediction-item";
+
+        item.innerHTML = `
+            <div class="class-label">
+                <span>${model.getClassLabels()[i]}</span>
+                <span class="pct-text">0%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+        `;
+        labelContainer.appendChild(item);
+    }
 }
 
-init();
-
-// ================================
-// Start Webcam Detection
-// ================================
+// Start webcam
 async function initWebcam() {
-    const flip = true; // mirror webcam
-    webcam = new tmImage.Webcam(400, 300, flip);
+    if (webcam) await webcam.stop();
 
-    await webcam.setup(); // request camera access
+    webcam = new tmImage.Webcam(400, 400, true);
+    await webcam.setup();
     await webcam.play();
 
-    // Replace <video> with canvas webcam
-    document.getElementById("webcam").replaceWith(webcam.canvas);
+    const container = document.getElementById("webcam-container");
+    container.innerHTML = "";
+    container.appendChild(webcam.canvas);
+
+    document.getElementById("uploadedImageCanvas").style.display = "none";
+    currentMode = "webcam";
 
     window.requestAnimationFrame(loop);
 }
 
-// Webcam loop
 async function loop() {
-    webcam.update();
-    await predict(webcam.canvas);
-    window.requestAnimationFrame(loop);
+    if (currentMode === "webcam") {
+        webcam.update();
+        await predict(webcam.canvas);
+        window.requestAnimationFrame(loop);
+    }
 }
 
-// ================================
-// Handle Image Upload
-// ================================
+// Image upload
 async function handleImageUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
 
-    const img = new Image();
-    img.src = URL.createObjectURL(file);
+    const reader = new FileReader();
+    reader.onload = e => {
+        const img = new Image();
+        img.onload = async () => {
+            const canvas = document.getElementById("uploadedImageCanvas");
+            const ctx = canvas.getContext("2d");
 
-    img.onload = async () => {
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
+            canvas.width = 400;
+            canvas.height = 400;
+            ctx.drawImage(img, 0, 0, 400, 400);
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            canvas.style.display = "block";
+            document.getElementById("webcam-container").innerHTML = "";
+            currentMode = "image";
 
-        await predict(canvas);
+            await predict(canvas);
+        };
+        img.src = e.target.result;
     };
+    reader.readAsDataURL(file);
 }
 
-// ================================
-// Prediction Function
-// ================================
-async function predict(image) {
-    if (!model) return;
+// Prediction
+async function predict(input) {
+    const predictions = await model.predict(input);
 
-    const predictions = await model.predict(image);
+    for (let i = 0; i < maxPredictions; i++) {
+        const prob = predictions[i].probability;
+        const pct = (prob * 100).toFixed(0) + "%";
 
-    // Sort by highest probability
-    predictions.sort((a, b) => b.probability - a.probability);
+        const item = labelContainer.childNodes[i];
+        item.querySelector(".pct-text").innerText = pct;
 
-    const topPrediction = predictions[0];
+        const bar = item.querySelector(".progress-bar");
+        bar.style.width = pct;
 
-    // Display result
-    document.getElementById("result").innerText =
-        `${topPrediction.className} (${(topPrediction.probability * 100).toFixed(2)}%)`;
+        if (prob > 0.6) bar.style.backgroundColor = "#10b981";
+        else if (prob > 0.3) bar.style.backgroundColor = "#00f2ff";
+        else bar.style.backgroundColor = "#ff2d55";
+    }
 }
+
+window.onload = loadModel;
